@@ -1,6 +1,9 @@
 # rna_ptwte_wtm_example_input added by Gül Zerze on Jan 3, 2023
 
-# GAGA_system.gro file is the coordinate of the total system and topol.top is the GROMACS-compatible topology file of the total system. The user has to compile their own tpr files. The plumed files are compatible with the version 2.3.1. For the further details, please refer to the manuscript: 
+# GAGA_system.gro file is the coordinate of the total system and topol.top is the GROMACS-compatible topology file of the total system. 
+# The user has to compile their own tpr files. 
+# The plumed files are compatible with the version 2.3.1. The GROMACS version is 2016.3
+# For the further details, please see to the manuscript: https://pubs.acs.org/doi/10.1021/acs.jpcb.1c08038
 # The following is an example script how to run the plumed files:
 
 # Define number of replicas
