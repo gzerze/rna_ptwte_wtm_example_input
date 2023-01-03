@@ -1,0 +1,38 @@
+# rna_ptwte_wtm_example_input added by Gül Zerze on Jan 3, 2023
+
+# GAGA_system.gro file is the coordinate of the total system and topol.top is the GROMACS-compatible topology file of the total system. The user has to compile their own tpr files. The plumed files are compatible with the version 2.3.1. For the further details, please refer to the manuscript: 
+# The following is an example script how to run the plumed files:
+
+# Define number of replicas
+ng=14
+# Full path to application + application name
+application="gmx_p mdrun"
+# Define variables related to protein and ff
+s=1
+
+## Set proot to name of your protein
+proot="rna"
+ff="deshaw"
+fileroot="${proot}_${ff}"
+this="ptwte"
+
+options="-maxh 145.6 -replex 500 -multi $ng -ntomp 1 -dlb no \
+-v -s data/tpr/${fileroot}_${this}_s${s}_nd.tpr \
+-x data/xtc/${fileroot}_${this}_s${s}_nd.xtc \
+-o data/trr/${fileroot}_${this}_s${s}_nd.trr \
+-c data/gro/${fileroot}_${this}_s${s}_nd.gro \
+-e data/ene/${fileroot}_${this}_s${s}_nd.edr \
+-g data/log/${fileroot}_${this}_s${s}_nd.log \
+-plumed plumed/plumed_PT.dat \
+-cpo data/cpt/${fileroot}_${this}_s${s}_nd.cpt \
+-cpi data/cpt/${fileroot}_${this}_s${s}_nd.cpt -noappend"
+
+echo Running on host `hostname`
+echo Time is `date`
+echo Directory is `pwd`
+
+# Launch the MPI executable
+
+srun $application $options > outfile_${proot} 2>&1
+
+echo Time is `date`
